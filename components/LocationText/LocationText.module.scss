@@ -1,0 +1,17 @@
+.image {
+  width: 13px;
+  height: 18px;
+}
+.location {
+  &__container {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 25px;
+    letter-spacing: 0.23619px;
+    color: #878d9d;
+  }
+}

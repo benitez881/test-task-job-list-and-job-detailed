@@ -1,0 +1,13 @@
+.job {
+  &__list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 15px;
+    @media (max-width: 768px) {
+      padding: 9px;
+    }
+  }
+}

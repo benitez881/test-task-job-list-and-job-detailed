@@ -1,0 +1,59 @@
+.job {
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    max-width: 723px;
+    width: 100%;
+    max-height: 44px;
+    &_button {
+      font-family: "Roboto";
+      font-style: normal;
+      font-weight: 400;
+      font-size: 18px;
+      line-height: 24px;
+      letter-spacing: -0.5625px;
+      color: #3a4562;
+      font-stretch: 100;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    &_buttons {
+      display: flex;
+      justify-content: space-between;
+      gap: 24px;
+    }
+    &_title {
+      font-style: normal;
+      font-weight: 700;
+      font-size: 28px;
+      line-height: 34px;
+      letter-spacing: 0.413333px;
+      color: #3a4562;
+      max-width: calc(100% - 273px);
+    }
+    &_underline {
+      width: 100%;
+      height: 1px;
+      background: rgba(58, 69, 98, 0.13);
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .job {
+    &__header {
+      max-height: 146px;
+      &_underline {
+        margin: 12px 0 24px 0;
+      }
+      &_buttons {
+        order: 1;
+      }
+      &_title {
+        max-width: none;
+      }
+    }
+  }
+}

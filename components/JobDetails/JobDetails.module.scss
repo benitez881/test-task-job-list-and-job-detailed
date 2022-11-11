@@ -1,0 +1,60 @@
+.job {
+  &__container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1258px;
+    margin: 0 auto;
+    padding: 56px 19px;
+    gap: 20px;
+    @media (max-width: 992px) {
+      flex-direction: column;
+    }
+  }
+  &__article {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 723px;
+  }
+  &__apply {
+    font-style: normal;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 16px;
+    text-align: center;
+    text-transform: uppercase;
+    color: #ffffff;
+    width: 127px;
+    height: 52px;
+    background: #384564;
+    border-radius: 8px;
+    border: none;
+    margin-top: 39px;
+    margin-bottom: 32px;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  &__description {
+    width: 100%;
+    font-family: "Roboto";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 24px;
+    letter-spacing: -0.5625px;
+    color: #3a4562;
+    font-stretch: 100;
+  }
+}
+
+@media (max-width: 768px) {
+  .job {
+    &__container {
+      padding: 24px 15px;
+      align-items: center;
+    }
+  }
+}

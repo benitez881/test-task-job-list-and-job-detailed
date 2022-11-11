@@ -1,0 +1,59 @@
+.job {
+  &__title {
+    display: grid;
+    grid-template-areas: "text  salary" "ago ago";
+    column-gap: 60px;
+    @media (max-width: 768px) {
+      grid-template-areas: "text text" "ago salary";
+      grid-template-columns: 1fr;
+      grid-template-rows: 1fr 1fr;
+      align-items: center;
+    }
+    &_text {
+      font-style: normal;
+      font-weight: 700;
+      font-size: 24px;
+      line-height: 30px;
+      letter-spacing: -0.75px;
+      color: #3a4562;
+      grid-area: text;
+    }
+    &_ago {
+      grid-area: ago;
+      font-style: normal;
+      font-weight: 300;
+      font-size: 13px;
+      line-height: 25px;
+      letter-spacing: 0.191905px;
+
+      color: rgba(56, 65, 93, 0.602109);
+    }
+    &_salary {
+      font-style: normal;
+      font-weight: 700;
+      font-size: 20px;
+      line-height: 25px;
+      letter-spacing: -0.625px;
+      color: #3a4562;
+      grid-area: salary;
+      &_container {
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: column;
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .job {
+    &__title {
+      &_salary {
+        &_container {
+          flex-direction: column-reverse;
+          align-items: flex-end;
+        }
+      }
+    }
+  }
+}
