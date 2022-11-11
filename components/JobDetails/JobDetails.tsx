@@ -1,15 +1,15 @@
 import React from "react";
 import styles from "./JobDetails.module.scss";
-import AdditionalBlock from "../AdditionalBlock/AdditionalBlock";
 import AttachedImages from "../AttachedImages/AttachedImages";
 import ReturnButton from "../ReturnButton/ReturnButton";
 import Title from "./components/Title/Title";
 import Header from "./components/Header/Header";
 import Map from "./components/Map/Map";
 import Additional from "./components/Additional/Additional";
+import { Job } from "../../store/reducers/jobsReducer";
 
 type Props = {
-  info: any;
+  info: Job;
 };
 const JobDetails = ({ info }: Props) => {
   const {

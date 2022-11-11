@@ -2,8 +2,8 @@ import React from "react";
 import styles from "./Map.module.scss";
 
 type Props = {
-  lat: string;
-  long: string;
+  lat: number;
+  long: number;
 };
 const Map = ({ lat, long }: Props) => {
   return (
