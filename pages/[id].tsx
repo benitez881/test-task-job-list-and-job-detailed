@@ -3,13 +3,14 @@ import { useRouter } from "next/router";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import JobDetails from "../components/JobDetails/JobDetails";
+import { Job, storeState } from "../store/reducers/jobsReducer";
 
-const JobPage = ({}: any) => {
+const JobPage = () => {
   const router = useRouter();
   const dispatch = useDispatch();
-  const { jobs } = useSelector((state): any => (state as any).jobs);
+  const { jobs } = useSelector((state: storeState) => state);
 
-  if (typeof jobs === "object" && !Array.isArray(jobs)) {
+  if (!jobs.length) {
     (async function () {
       const response = await fetch(
         "https://api.json-generator.com/templates/ZM1r0eic3XEy/data?access_token=wm3gg940gy0xek1ld98uaizhz83c6rh2sir9f9fu"
@@ -24,7 +25,7 @@ const JobPage = ({}: any) => {
     })();
   }
   if (!Array.isArray(jobs)) return <></>;
-  const job = jobs.filter((item: any) => item.id == router.query.id)[0];
+  const job = jobs.filter((item: Job) => item.id == router.query.id)[0];
 
   return (
     <>
@@ -37,15 +38,3 @@ const JobPage = ({}: any) => {
 };
 
 export default JobPage;
-
-// export async function getServerSideProps({ params }: any) {
-//   const response = await fetch(
-//     "https://api.json-generator.com/templates/ZM1r0eic3XEy/data?access_token=wm3gg940gy0xek1ld98uaizhz83c6rh2sir9f9fu"
-//   );
-//   const data = await response.json();
-
-//   const job = data
-//   return {
-//     props: { job }, // will be passed to the page component as props
-//   };
-// }

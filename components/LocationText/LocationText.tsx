@@ -3,8 +3,8 @@ import { useEffect, useState } from "react";
 import styles from "./LocationText.module.scss";
 
 type Props = {
-  lat: string;
-  long: string;
+  lat: number;
+  long: number;
 };
 type Location = {
   adminArea1: string;

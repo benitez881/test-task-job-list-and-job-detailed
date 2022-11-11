@@ -4,4 +4,4 @@ const rootReducer = combineReducers({
   jobs: jobsReducer,
 });
 
-export const store = createStore(rootReducer);
+export const store = createStore(jobsReducer);

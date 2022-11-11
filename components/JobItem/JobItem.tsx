@@ -5,10 +5,11 @@ import StarsIcon from "../UI/StarsIcon/StarsIcon";
 import BookmarkBorderRoundedIcon from "@mui/icons-material/BookmarkBorderRounded";
 import styles from "./JobItem.module.scss";
 import Link from "next/link";
+import { Job } from "../../store/reducers/jobsReducer";
 
 type Props = {
   imageSrc: string;
-  info: any;
+  info: Job;
 };
 
 const JobItem = ({ imageSrc, info }: Props) => {
