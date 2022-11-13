@@ -1,44 +1,41 @@
 import type { NextPage } from "next";
 import Head from "next/head";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import BasicPagination from "../components/BasicPagination/BasicPagination";
 import JobItemsList from "../components/JobItemsList/JobItemsList";
+import getJobs from "../service/getJobs";
+import setJobs from "../store/actionCreators/setJobs";
+import setPage from "../store/actionCreators/setPage";
 import { Job, storeState } from "../store/reducers/jobsReducer";
 import styles from "../styles/Home.module.scss";
 
 const Home: NextPage = () => {
   const dispatch = useDispatch();
   const { jobs, page } = useSelector((state: storeState) => state);
-  if (!jobs.length) {
-    (async function () {
-      const response = await fetch(
-        "https://api.json-generator.com/templates/ZM1r0eic3XEy/data?access_token=wm3gg940gy0xek1ld98uaizhz83c6rh2sir9f9fu"
-      );
-      const jobs = await response.json();
-
-      dispatch({
-        type: "set_jobs",
-        payload: {
-          jobs,
-        },
-      });
-    })();
-  }
-  if (!jobs.length) return <></>;
+  const [jobsPaginated, setJobsPaginated] = useState<Job[]>([]);
   const jobsPerPage = 6;
-  const jobs_paginated = jobs.filter((job: Job, index: number) => {
-    return index < page * jobsPerPage && index + 1 > (page - 1) * jobsPerPage;
+  useEffect(() => {
+    if (!jobs.length) {
+      (async function () {
+        const jobs = await getJobs();
+
+        setJobs(jobs)(dispatch);
+      })();
+    }
   });
+  useEffect(() => {
+    const jobsFiltered = jobs.filter((job: Job, index: number) => {
+      return index < page * jobsPerPage && index + 1 > (page - 1) * jobsPerPage;
+    });
+    setJobsPaginated(jobsFiltered);
+  }, [page, jobs]);
+
   const paginationHandler = (
     event: React.ChangeEvent<unknown>,
     page: number
   ) => {
-    dispatch({
-      type: "set_page",
-      payload: {
-        page,
-      },
-    });
+    setPage(page)(dispatch);
   };
 
   return (
@@ -46,11 +43,11 @@ const Home: NextPage = () => {
       <Head>
         <title>Jobs</title>
       </Head>
-      {!jobs_paginated.length ? (
+      {!jobsPaginated.length ? (
         <></>
       ) : (
         <>
-          <JobItemsList list={jobs_paginated} className={styles.list} />
+          <JobItemsList list={jobsPaginated} className={styles.list} />
           <BasicPagination
             className={styles.pagination}
             count={Math.ceil(jobs.length / jobsPerPage)}

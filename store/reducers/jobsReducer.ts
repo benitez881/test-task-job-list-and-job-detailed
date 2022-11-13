@@ -34,6 +34,7 @@ type Action = {
     page: number;
   };
 };
+
 export const jobsReducer = (
   state: storeState = defaultState,
   action: Action

@@ -1,8 +1,10 @@
 import Head from "next/head";
 import { useRouter } from "next/router";
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import JobDetails from "../components/JobDetails/JobDetails";
+import getJobs from "../service/getJobs";
+import setJobs from "../store/actionCreators/setJobs";
 import { Job, storeState } from "../store/reducers/jobsReducer";
 
 const JobPage = () => {
@@ -10,21 +12,15 @@ const JobPage = () => {
   const dispatch = useDispatch();
   const { jobs } = useSelector((state: storeState) => state);
 
-  if (!jobs.length) {
-    (async function () {
-      const response = await fetch(
-        "https://api.json-generator.com/templates/ZM1r0eic3XEy/data?access_token=wm3gg940gy0xek1ld98uaizhz83c6rh2sir9f9fu"
-      );
-      const jobs = await response.json();
-      dispatch({
-        type: "set_jobs",
-        payload: {
-          jobs,
-        },
-      });
-    })();
-  }
-  if (!Array.isArray(jobs)) return <></>;
+  useEffect(() => {
+    if (!jobs.length) {
+      (async function () {
+        const jobs = await getJobs();
+
+        setJobs(jobs)(dispatch);
+      })();
+    }
+  });
   const job = jobs.filter((item: Job) => item.id == router.query.id)[0];
 
   return (
@@ -32,7 +28,7 @@ const JobPage = () => {
       <Head>
         <title>Job - details</title>
       </Head>
-      {job ? <JobDetails info={job} /> : <></>}
+      {job && <JobDetails info={job} />}
     </>
   );
 };
