@@ -2,6 +2,12 @@ import PlaceIcon from "@mui/icons-material/Place";
 import { useEffect, useState } from "react";
 import styles from "./LocationText.module.scss";
 
+export const getServerSideProps = async () => {
+  return {
+    props: {},
+  };
+};
+
 type Props = {
   lat: number;
   long: number;

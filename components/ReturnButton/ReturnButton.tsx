@@ -5,7 +5,7 @@ import styles from "./ReturnButton.module.scss";
 
 const ReturnButton = () => {
   return (
-    <Link href={"/"} className={styles.return__button}>
+    <Link href={"/jobs/1"} className={styles.return__button}>
       <ArrowBackIosIcon />
       <span className={styles.return__text}>RETURN TO JOB BOARD</span>
     </Link>

@@ -21,7 +21,7 @@ const JobItem = ({ imageSrc, info }: Props) => {
       <div className={styles.job__textimage}>
         <CircleImage imageSrc={imageSrc} />
         <div className={styles.job__text}>
-          <Link href={id} style={{ textDecoration: "none" }}>
+          <Link href={`details/${id}`} style={{ textDecoration: "none" }}>
             <div className={styles.job__title}>{title}</div>
           </Link>
           <div className={styles.job__name_address}>
