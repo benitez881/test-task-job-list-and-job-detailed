@@ -19,7 +19,6 @@ export const getServerSideProps = async ({ params }: Data) => {
   const jobsPerPage = 6;
   const jobs = await getJobs();
   const page = Number(params.id);
-  console.log("page", page);
 
   const jobsFiltered = jobs.filter((job: Job, index: number) => {
     return index < page * jobsPerPage && index + 1 > (page - 1) * jobsPerPage;
