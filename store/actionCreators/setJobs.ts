@@ -1,7 +1,8 @@
+import { Dispatch } from "redux";
 import { Job } from "../reducers/jobsReducer";
 
 const setJobs = (jobs: Job[]) => {
-  return (dispatch: any) => {
+  return (dispatch: Dispatch) => {
     dispatch({
       type: "set_jobs",
       payload: {
