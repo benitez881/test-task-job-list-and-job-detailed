@@ -1,4 +1,4 @@
-import { title } from "process";
+/* eslint-disable @next/next/no-img-element */
 import React from "react";
 import styles from "./AttachedImages.module.scss";
 
@@ -13,6 +13,7 @@ const AttachedImages = ({ title, imagesSrc }: Props) => {
       <div className={styles.underline}></div>
       <div className={styles.img__container}>
         {imagesSrc.map((src, index) => (
+          // use index as key, because the list is immutable
           <img src={src} key={index} alt="" className={styles.img}></img>
         ))}
       </div>

@@ -1,10 +1,11 @@
 import { Dispatch } from "redux";
 import { Job } from "../reducers/jobsReducer";
+import { Actions } from "../types";
 
 const setJobs = (jobs: Job[]) => {
   return (dispatch: Dispatch) => {
     dispatch({
-      type: "set_jobs",
+      type: Actions.SET_JOBS,
       payload: {
         jobs,
       },

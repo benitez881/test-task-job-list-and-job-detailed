@@ -7,14 +7,19 @@ import styles from "./JobItem.module.scss";
 import Link from "next/link";
 import { Job } from "../../store/reducers/jobsReducer";
 
-type Props = {
+type JobItemProps = {
   imageSrc: string;
-  info: Job;
+  job: Job;
 };
 
-const JobItem = ({ imageSrc, info }: Props) => {
-  const { title, name, address, location, id } = info;
-  const { lat, long } = location;
+const JobItem = ({ imageSrc, job }: JobItemProps) => {
+  const {
+    title,
+    name,
+    address,
+    location: { lat, long },
+    id,
+  } = job;
 
   return (
     <section className={styles.job__container}>
