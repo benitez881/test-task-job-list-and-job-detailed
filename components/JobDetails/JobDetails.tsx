@@ -8,10 +8,11 @@ import Map from "./components/Map/Map";
 import Additional from "./components/Additional/Additional";
 import { Job } from "../../store/reducers/jobsReducer";
 
-type Props = {
-  info: Job;
+type JobDetailsProps = {
+  job: Job;
 };
-const JobDetails = ({ info }: Props) => {
+
+const JobDetails = ({ job }: JobDetailsProps) => {
   const {
     title,
     salary,
@@ -20,7 +21,7 @@ const JobDetails = ({ info }: Props) => {
     employment_type,
     pictures,
     location,
-  } = info;
+  } = job;
   const { lat, long } = location;
   return (
     <div className={styles.job__container}>

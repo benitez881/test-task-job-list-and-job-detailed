@@ -2,25 +2,19 @@ import PlaceIcon from "@mui/icons-material/Place";
 import { useEffect, useState } from "react";
 import styles from "./LocationText.module.scss";
 
-export const getServerSideProps = async () => {
-  return {
-    props: {},
-  };
-};
-
-type Props = {
+type LocationTextProps = {
   lat: number;
   long: number;
 };
 type Location = {
-  adminArea1: string;
-  adminArea5: string;
+  country: string;
+  city: string;
 };
 
-const LocationText = ({ lat, long }: Props) => {
+const LocationText = ({ lat, long }: LocationTextProps) => {
   const [result, setResult] = useState<Location>({
-    adminArea1: "",
-    adminArea5: "",
+    city: "",
+    country: "",
   });
   useEffect(() => {
     (async function () {
@@ -34,18 +28,18 @@ const LocationText = ({ lat, long }: Props) => {
       const { adminArea1, adminArea5 } = await json.results[0].locations[0];
 
       if (!adminArea1 && !adminArea5) {
-        setResult({ adminArea1: "", adminArea5: "" });
+        setResult({ country: "", city: "" });
       } else {
-        setResult({ adminArea1, adminArea5 });
+        setResult({ country: adminArea1, city: adminArea5 });
       }
     })();
   }, [lat, long]);
 
-  const { adminArea1, adminArea5 } = result;
-  return adminArea1 && adminArea5 ? (
+  const { city, country } = result;
+  return city && country ? (
     <div className={styles.location__container}>
       <PlaceIcon viewBox="5 2 14 20" className={styles.image} />
-      {adminArea1}, {adminArea5}
+      {city}, {country}
     </div>
   ) : (
     <></>

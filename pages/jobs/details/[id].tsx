@@ -1,32 +1,34 @@
 import Head from "next/head";
 import { ParsedUrlQuery } from "querystring";
-import React, { useEffect } from "react";
+import React from "react";
 import getJobs from "../../../service/getJobs";
 import JobDetails from "../../../components/JobDetails/JobDetails";
-import { Job, storeState } from "../../../store/reducers/jobsReducer";
+import { Job } from "../../../store/reducers/jobsReducer";
 
 type Data = {
   params: ParsedUrlQuery;
 };
+
 export const getServerSideProps = async ({ params }: Data) => {
   const jobs = await getJobs();
-  const job = jobs.filter((item: Job) => item.id == params.id);
+  const job = jobs.find((item: Job) => item.id === params.id?.toString());
 
   return {
-    props: { job: job[0] },
+    props: { job },
   };
 };
 
-type Props = {
+type JobPageProps = {
   job: Job;
 };
-const JobPage = ({ job }: Props) => {
+
+const JobPage = ({ job }: JobPageProps) => {
   return (
     <>
       <Head>
         <title>Job - details</title>
       </Head>
-      {job && <JobDetails info={job} />}
+      {job && <JobDetails job={job} />}
     </>
   );
 };

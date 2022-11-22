@@ -1,10 +1,11 @@
 import { Dispatch } from "redux";
 import { Job } from "../reducers/jobsReducer";
+import { Actions } from "../types";
 
 const setPage = (page: number) => {
   return (dispatch: Dispatch) => {
     dispatch({
-      type: "set_page",
+      type: Actions.SET_PAGE,
       payload: {
         page,
       },

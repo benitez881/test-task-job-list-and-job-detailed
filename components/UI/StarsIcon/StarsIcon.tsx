@@ -1,18 +1,19 @@
-import React, { ReactNode } from "react";
+import React from "react";
 import StarRoundedIcon from "@mui/icons-material/StarRounded";
 import StarBorderRoundedIcon from "@mui/icons-material/StarBorderRounded";
 import styles from "./StarsIcon.module.scss";
 
-type Props = {
+type StarsIconProps = {
   maxAmount?: number;
   amount?: number;
 };
-const StarsIcon = ({ maxAmount = 5, amount = maxAmount }: Props) => {
+const StarsIcon = ({ maxAmount = 5, amount = maxAmount }: StarsIconProps) => {
   return (
     <>
       {Array(maxAmount)
         .fill(false)
         .map((_, index) =>
+          // use index as key, because the list is immutable
           index >= amount ? (
             <StarBorderRoundedIcon
               viewBox="3 3 18 18"

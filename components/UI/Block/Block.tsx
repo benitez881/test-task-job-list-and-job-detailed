@@ -1,17 +1,18 @@
 import React from "react";
 import styles from "./Block.module.scss";
 
-type Props = {
-  children: string;
+type BlockProps = {
   blockStyles: BlockStyles;
+  children: string;
 };
+
 export type BlockStyles = {
   color: string;
   backgroundColor: string;
   borderColor: string;
 };
 
-const Block = ({ children, blockStyles }: Props) => {
+const Block = ({ blockStyles, children }: BlockProps) => {
   return (
     <div className={styles.block} style={blockStyles}>
       {children}
